@@ -31,18 +31,30 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 GRANT ALL ON SCHEMA public TO postgres;
 
 
--- Table: public.public_table
+-- Table: public.order_history
 
 -- DROP TABLE IF EXISTS public.public_table;
 
-CREATE TABLE IF NOT EXISTS public.public_table
+CREATE TABLE IF NOT EXISTS public.order_history
 (
-    id character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    order_id character varying(32) COLLATE pg_catalog."default" NOT NULL,
     "time" numeric NOT NULL,
-    CONSTRAINT public_table_pkey PRIMARY KEY (id)
+    status character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    client_id character varying(32) COLLATE pg_catalog."default" NOT NULL,
+    symbol character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    price numeric NOT NULL,
+    amount numeric NOT NULL,
+    side character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    type character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    value numeric NOT NULL,
+    position_id character varying(32) COLLATE pg_catalog."default" NOT NULL,
+    paid numeric NOT NULL,
+    finish_time numeric NOT NULL,
+    fee numeric NOT NULL,
+    CONSTRAINT public_table_pkey PRIMARY KEY (order_id)
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.public_table
+ALTER TABLE IF EXISTS public.order_history
     OWNER to postgres;
